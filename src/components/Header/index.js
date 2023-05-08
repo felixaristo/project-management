@@ -9,13 +9,13 @@ const Header = () => {
   const name = localStorage.getItem("name");
 
   return (
-    <div className="bg-white">
+    <div className="bg-white shadow-sm">
       <Navbar>
         <Container className="mx-5">
           <Image width={140} src={logo} />
           <Dropdown>
             <Dropdown.Toggle className="d-flex gap-2" variant="none">
-              <i className="fa-sharp fa-regular fa-circle-user mt-1"></i>
+              <i className="fa-sharp fa-regular fa-circle-user fs-4"></i>
               <span>{name}</span>
             </Dropdown.Toggle>
 

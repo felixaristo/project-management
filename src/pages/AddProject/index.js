@@ -1,25 +1,39 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const AddClient = () => {
+const AddProject = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
+  const [idClient, setIdClient] = useState("");
+  const [dataClient, setDataClient] = useState([""]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_URL}client/list/`, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        setDataClient(res.data.data);
+        setIsLoading(false);
+      });
+  }, []);
 
   const handleSubmit = () => {
     axios
       .post(
-        `${process.env.REACT_APP_URL}client/create`,
-        { name: name },
+        `${process.env.REACT_APP_URL}project/create`,
+        { id_client: idClient, name: name },
         {
           headers: { Authorization: "Bearer " + token },
         }
       )
       .then((res) => {
-        navigate("/client");
+        navigate("/project");
       })
       .catch((err) => {});
   };
@@ -32,7 +46,7 @@ const AddClient = () => {
   return (
     <Card className="border-0 shadow-lg">
       <Card.Body>
-        <Card.Title className="fw-bold">Add Client</Card.Title>
+        <Card.Title className="fw-bold">Add Project</Card.Title>
         <Form className="mt-3">
           <Form.Group className="mb-3">
             <Form.Label>Name:</Form.Label>
@@ -44,6 +58,14 @@ const AddClient = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Client:</Form.Label>
+            <Form.Select onChange={(e) => setIdClient(e.target.value)}>
+              {dataClient.map((item) => (
+                <option value={item.id}>{item.name}</option>
+              ))}
+            </Form.Select>
           </Form.Group>
         </Form>
         {/* <div className="mb-3">
@@ -72,4 +94,4 @@ const AddClient = () => {
   );
 };
 
-export default AddClient;
+export default AddProject;

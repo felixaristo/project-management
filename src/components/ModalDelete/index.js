@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 
-const ModalDelete = ({ id }) => {
+const ModalDelete = ({ url, id }) => {
   const [show, setShow] = useState(false);
   const [idClient, setIdClient] = useState("");
   const token = localStorage.getItem("token");
@@ -10,7 +10,7 @@ const ModalDelete = ({ id }) => {
   const handleDelete = () => {
     axios
       .post(
-        `${process.env.REACT_APP_URL}client/delete/${idClient}`,
+        `${process.env.REACT_APP_URL}${url}/delete/${idClient}`,
         { id_client: idClient },
         {
           headers: {
@@ -25,7 +25,7 @@ const ModalDelete = ({ id }) => {
         alert(err);
       });
   };
-  console.log(idClient);
+
   return (
     <>
       <i

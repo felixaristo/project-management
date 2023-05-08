@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: rgb(242, 242, 242)!important;
+  background-color: rgba(241, 240, 240, 0.788)!important;
 }
 
 .pointer {
@@ -15,6 +15,44 @@ body {
 }
 
 .icon-home:hover{
-  border: black;
-  box-shadow: 20px;
+  transform: scale(1.1);
+}
+
+.rounded-img {
+  border-radius: 25px;
+}
+
+.dropdown-toggle::after {
+  border: none !important;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+  border-color: white !important;
+}
+
+.border-table {
+  border-radius: 25px!important;
+}
+
+.bg-table {
+  background-color: rgb(104, 153, 209)!important;
+  border-color: rgb(104, 153, 209)!important;
+}
+
+.card-login {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.form-layout {
+  width: 1000px;
+}
+
+.btn-submit {
+  background-color: #bc4f5a!important;
+}
+
+.img-thankyou {
+  width: 100%;
 }

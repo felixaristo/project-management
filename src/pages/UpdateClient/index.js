@@ -8,7 +8,7 @@ const UpdateClient = () => {
   const token = localStorage.getItem("token");
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
-  const {id} = useParams()
+  const { id } = useParams();
 
   const handleUpdate = () => {
     axios
@@ -20,7 +20,7 @@ const UpdateClient = () => {
         }
       )
       .then((res) => {
-        navigate("/clients");
+        navigate("/client");
       })
       .catch((err) => {});
   };

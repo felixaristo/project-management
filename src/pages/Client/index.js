@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Modal, Table } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AddButton } from "../../components/AddButton";
 import ModalDelete from "../../components/ModalDelete";
 
-const Clients = () => {
+const Client = () => {
   const navigate = useNavigate();
   const [dataClient, setDataClient] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +20,7 @@ const Clients = () => {
         setDataClient(res.data.data);
         setIsLoading(false);
       });
-  });
+  }, []);
 
   return (
     <Card className="shadow border-0">
@@ -29,8 +29,8 @@ const Clients = () => {
           <Card.Title className="fw-bold">Clients</Card.Title>
           <AddButton click={() => navigate("/add-client")}>Client</AddButton>
         </div>
-        <Table onLoad={isLoading} className="mt-2 rounded rounded-3" bordered>
-          <thead className="bg-primary text-white">
+        <Table className="mt-2 border-table">
+          <thead className="bg-table text-white">
             <tr>
               <th width="5%">No.</th>
               <th>Client Name</th>
@@ -42,9 +42,9 @@ const Clients = () => {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>
+                <td width="20%">
                   <i className="fa-solid fa-pen-to-square ms-1 pointer" onClick={()=>navigate(`/update-client/${item.id}`)}></i>
-                  <ModalDelete id={item.id} />
+                  <ModalDelete url="client" id={item.id} />
                 </td>
               </tr>
             </tbody>
@@ -55,4 +55,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Client;
