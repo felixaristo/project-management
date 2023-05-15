@@ -19,6 +19,8 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/attendance-user" element={<Form />} />
+      <Route path="/thankyou" element={<Thankyou />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/client" element={<Client />} />
@@ -29,8 +31,6 @@ const App = () => (
         <Route path="/add-attendance/:id" element={<AddAttendance />} />
         <Route path="/update-project/:id" element={<UpdateProject />} />
         <Route path="/detail-project/:id" element={<DetailProject />} />
-        <Route path="/attendance-user" element={<Form />} />
-        <Route path="/thankyou" element={<Thankyou />} />
       </Route>
     </Routes>
   </BrowserRouter>
