@@ -27,6 +27,7 @@ const DetailProject = () => {
   const [modalAddFolder, setModalAddFolder] = useState(false);
   const [modalUpdateFolder, setModalUpdateFolder] = useState(false);
   const [modalManageFolder, setModalManageFolder] = useState(false);
+  const [modalListMom, setModalListMom] = useState(false);
   const [folder, setFolder] = useState("");
   const [idFolder, setIdFolder] = useState("");
   const [file, setFile] = useState("");
@@ -111,18 +112,21 @@ const DetailProject = () => {
         <Card.Body>
           <Card.Title className="mb-3">Detail Project</Card.Title>
           <Row>
-            <Col md={6}>
-              <Card className="shadow">
+            <Col md={12}>
+              <Card className="shadow-lg">
                 <Card.Body>
-                  <Card.Title>Attendance</Card.Title>
-                  <AddButton click={() => navigate("/add-attendance/" + id)}>
-                    Attendance
-                  </AddButton>
-                  <Table className="mt-3 border-table">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title className="mb-0">Attendance</Card.Title>
+                    <AddButton click={() => navigate("/add-attendance/" + id)}>
+                      Attendance
+                    </AddButton>
+                  </div>
+                  <Table className="mt-2 border-table">
                     <thead className="bg-table text-white">
                       <tr>
                         <th width="5%">No.</th>
-                        <th>Topic</th>
+                        <th width="30%">Topic</th>
+                        <th>Date</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -131,7 +135,8 @@ const DetailProject = () => {
                         <tr>
                           <td>{item.id}</td>
                           <td>{item.topic}</td>
-                          <td width="20%">
+                          <td></td>
+                          <td width="15%">
                             <i
                               className="fa-solid fa-pen-to-square ms-1 pointer"
                               onClick={() =>
@@ -147,6 +152,7 @@ const DetailProject = () => {
                                 )
                               }
                             ></i>
+                            <i class="bi bi-list-ul ms-4 pointer icon-bold" onClick={()=>setModalListMom(true)}></i>
                           </td>
                         </tr>
                       </tbody>
@@ -155,14 +161,16 @@ const DetailProject = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={6}>
-              <Card className="shadow">
+            <Col md={12} className="mt-4">
+              <Card className="shadow-lg">
                 <Card.Body>
-                  <Card.Title>Internal Team</Card.Title>
-                  <AddButton click={() => navigate("/add-attendance/" + id)}>
-                    Attendance
-                  </AddButton>
-                  <Table className="mt-3 border-table">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title>Team</Card.Title>
+                    <AddButton click={() => navigate("/add-attendance/" + id)}>
+                      Attendance
+                    </AddButton>
+                  </div>
+                  <Table className="mt-2 border-table">
                     <thead className="bg-table text-white">
                       <tr>
                         <th width="5%">No.</th>
@@ -191,56 +199,24 @@ const DetailProject = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={6} className="mt-3">
-              <Card className="shadow">
+            <Col md={12} className="mt-4">
+              <Card className="shadow-lg">
                 <Card.Body>
-                  <Card.Title>External Team</Card.Title>
-                  <AddButton click={() => navigate("/add-attendance/" + id)}>
-                    Attendance
-                  </AddButton>
-                  <Table className="mt-3 border-table">
-                    <thead className="bg-table text-white">
-                      <tr>
-                        <th width="5%">No.</th>
-                        <th>Topic</th>
-                        {/* <th>Action</th> */}
-                      </tr>
-                    </thead>
-                    {dataAttendance.map((item) => (
-                      <tbody>
-                        <tr>
-                          <td>{item.id}</td>
-                          <td>{item.topic}</td>
-                          {/* <td width="20%">
-                            <i
-                              className="fa-solid fa-pen-to-square ms-1 pointer"
-                              onClick={() =>
-                                navigate(`/update-client/${item.id}`)
-                              }
-                            ></i>
-                            <ModalDelete url="client" id={item.id} />
-                          </td> */}
-                        </tr>
-                      </tbody>
-                    ))}
-                  </Table>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={6} className="mt-3">
-              <Card className="shadow">
-                <Card.Body>
-                  <Card.Title>Files</Card.Title>
-                  <AddButton click={() => setModalAddFile(true)}>
-                    Files
-                  </AddButton>
-                  <Button
-                    className="bg-table text-white"
-                    onClick={() => setModalManageFolder(true)}
-                  >
-                    Manage Folder
-                  </Button>
-                  <Table className="mt-3 border-table">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title>Files</Card.Title>
+                    <div>
+                      <AddButton click={() => setModalAddFile(true)}>
+                        Files
+                      </AddButton>
+                      <Button
+                        className="bg-table text-white"
+                        onClick={() => setModalManageFolder(true)}
+                      >
+                        Manage Folder
+                      </Button>
+                    </div>
+                  </div>
+                  <Table className="mt-2 border-table">
                     <thead className="bg-table text-white">
                       <tr>
                         <th width="5%">No.</th>
@@ -255,7 +231,7 @@ const DetailProject = () => {
                           <td>{item.id}</td>
                           <td>{item.folder_name}</td>
                           <td>{item.title}</td>
-                          <td width="20%">
+                          <td width="15%">
                             <i
                               className="fa-solid fa-pen-to-square ms-1 pointer"
                               onClick={() => {
@@ -265,7 +241,7 @@ const DetailProject = () => {
                             ></i>
                             <ModalDelete url="project/files" id={item.id} />
                             <a href={item.file} target="_blank">
-                              <i class="fa-solid fa-arrow-right pointer ms-4 text-dark"></i>
+                              <i class="bi bi-box-arrow-up-right ms-4 text-dark icon-bold"></i>
                             </a>
                           </td>
                         </tr>
@@ -278,6 +254,55 @@ const DetailProject = () => {
           </Row>
         </Card.Body>
       </Card>
+
+      {/* modal list mom */}
+      <Modal
+        show={modalListMom}
+        onHide={() => setModalListMom(false)}
+      >
+        <Modal.Body>
+          <div className="d-flex justify-content-between">
+            <Modal.Title className="fs-4 fw-bold">List MoM</Modal.Title>
+            <Button
+              className="bg-table text-white"
+              onClick={() => {
+                // setModalAddFolder(true);
+                setModalListMom(false);
+              }}
+            >
+              Add MoM
+            </Button>
+          </div>
+          <Table className="mt-2">
+            <thead className="bg-table text-white">
+              <tr>
+                <th width="5%">No.</th>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataFolder.map((item) => (
+                <tr>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td width="20%">
+                    <i
+                      className="fa-solid fa-pen-to-square ms-1 pointer"
+                      onClick={() => {
+                        setIdUpdateFolder(item.id);
+                        setModalUpdateFolder(true);
+                        setModalManageFolder(false);
+                      }}
+                    ></i>
+                    <ModalDelete url="project/files/folder" id={item.id} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Modal.Body>
+      </Modal>
 
       {/* modal add file*/}
       <Modal show={modalAddFile} onHide={() => setModalAddFile(false)}>
@@ -417,17 +442,19 @@ const DetailProject = () => {
         onHide={() => setModalManageFolder(false)}
       >
         <Modal.Body>
-          <p className="fs-4 fw-bold">Manage Folder</p>
-          <Button
-            className="bg-table text-white"
-            onClick={() => {
-              setModalAddFolder(true);
-              setModalManageFolder(false);
-            }}
-          >
-            Add Folder
-          </Button>
-          <Table className="mt-3">
+          <div className="d-flex justify-content-between">
+            <Modal.Title className="fs-4 fw-bold">Manage Folder</Modal.Title>
+            <Button
+              className="bg-table text-white"
+              onClick={() => {
+                setModalAddFolder(true);
+                setModalManageFolder(false);
+              }}
+            >
+              Add Folder
+            </Button>
+          </div>
+          <Table className="mt-2">
             <thead className="bg-table text-white">
               <tr>
                 <th width="5%">No.</th>

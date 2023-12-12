@@ -33,8 +33,9 @@ const Project = () => {
           <thead className="bg-table text-white">
             <tr>
               <th width="5%">No.</th>
-              <th>Project Name</th>
-              <th>Action</th>
+              <th width="20%">Project Name</th>
+              <th>Client</th>
+              <th width="13%">Action</th>
             </tr>
           </thead>
           {dataProject.map((item) => (
@@ -42,7 +43,8 @@ const Project = () => {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td width="20%">
+                <td></td>
+                <td>
                   <i
                     class="fa-solid fa-circle-info ms-1 pointer"
                     onClick={() => navigate(`/detail-project/${item.id}`)}

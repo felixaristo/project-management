@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div className="bg-white shadow-sm">
       <Navbar>
-        <Container className="mx-5">
+        <Container className="">
           <Image width={140} src={logo} />
           <Dropdown>
             <Dropdown.Toggle className="d-flex gap-2" variant="none">
@@ -41,7 +41,6 @@ const Header = () => {
               <span>Home</span>
             </Nav.Link>
             <Nav.Link href="#features">Settings</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
